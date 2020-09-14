@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+SUBMISSION_DIR=/autograder/submission/
+DIST_DIR=/autograder/source/dist/
+
+# Copy the student's file into the distribution files
+cp $SUBMISSION_DIR/arithmetic.c $DIST_DIR/src/
+
+mkdir $DIST_DIR/build
+cd $DIST_DIR/build
+cmake ..
+make
+
+# Run tests and generate Gradescope JSON
+./test-arithmetic --verbose
+python3 ../tests/grader.py --gradescope > /autograder/results/results.json

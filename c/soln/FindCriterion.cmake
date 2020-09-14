@@ -1,0 +1,1 @@
+../dist/FindCriterion.cmake

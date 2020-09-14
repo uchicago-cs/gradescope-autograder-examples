@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+SUBMISSION_DIR=/autograder/submission/
+DIST_DIR=/autograder/source/dist/
+
+# Overwrite student's test files with ours
+cp $DIST_DIR/pytest.ini $SUBMISSION_DIR
+cp $DIST_DIR/conftest.py $SUBMISSION_DIR
+cp $DIST_DIR/test_arithmetic.py $SUBMISSION_DIR
+
+# Run tests and generate gradescope report
+cd /autograder/submission
+py.test -v
+/autograder/source/grader.py --gradescope > /autograder/results/results.json
